@@ -1,0 +1,44 @@
+apply plugin: 'com.android.application'
+//com.android.library标示是一个库模块；
+//com.android.application标示这是一个应用模块
+android {
+    compileSdkVersion 21//编译sdk版本
+    buildToolsVersion '21.0.0'//构建工具版本
+
+    defaultConfig {
+        applicationId "com.example.lw.webview"
+        minSdkVersion 8
+        targetSdkVersion 19
+        versionCode 1
+        versionName "1.0"
+    }
+    //打包类型
+    buildTypes {
+        release {
+            //是否混淆
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+//依赖管理
+dependencies {
+    //本地jar依赖
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    //远程依赖
+    compile 'com.android.support:appcompat-v7:19.1.0'
+    /**
+     *Android Studio 使用 gradle 进行依赖管理，兼容了 maven 的库，一个经典的 maven 库的配置如下：
+     <dependency>
+     <groupId>com.bugtags.library</groupId>
+     <artifactId>bugtags-lib</artifactId>
+     <version>19.1.0</version>
+     </dependency>
+     对比之后，你会发现 compile 的内容中，分为三部分 groupdId:artifactId:version
+
+     com.bugtags.library对应groupId
+
+     bugtags-lib对应 artifactId
+     * */
+}
